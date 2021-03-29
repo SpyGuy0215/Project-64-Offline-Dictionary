@@ -33,7 +33,11 @@ export default class HomeScreen extends React.Component{
     render() {
         return(
             <View style={styles.containerStyle}>
-                <Header alignment={"center"}>OnlineDict</Header>
+                <Header
+                    alignment={"center"} 
+                    backgroundColor={"#333333"}
+                    centerComponent={{text:"OnlineDict", style:{color: "#eeeeee", fontSize: 20}}}
+                />
                 <TextInput onChangeText={text => {
                     this.setState({
                         text: text,
@@ -41,7 +45,7 @@ export default class HomeScreen extends React.Component{
                         word: " ", 
                         lexicalCategory: " ", 
                         examples: [], 
-                        definition: ""
+                        definition: " "
                     })
                 }}
                 value={this.state.text}
