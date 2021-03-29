@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 import {Header} from 'react-native-elements'; 
 
-export default class HomeScreen extends React.component{
+export default class HomeScreen extends React.Component{
     constructor() {
         super(); 
         this.state={
@@ -31,7 +31,7 @@ export default class HomeScreen extends React.component{
     render() {
         return(
             <View style={styles.containerStyle}>
-                <Header>Dictionary</Header>
+                <Header>OnlineDict</Header>
                 <TextInput onChangeText={text => {
                     this.setState({
                         text: text,
@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
     containerStyle:{
         flex:1,
         backgroundColor: "#121212",
-        alignContent: "center"
+        alignContent: "center", 
+        width: Dimensions.get('window').width() 
     },
     textStyle:{
         textAlign: "center",
