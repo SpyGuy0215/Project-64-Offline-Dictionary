@@ -15,23 +15,25 @@ export default class HomeScreen extends React.Component{
         }
     }
 
-    getWord = async (word) => {
+    getWord = (word) => {
         var searchKeyword = word.toLowerCase(); 
         var url = "https://rupinwhitehatjr.github.io.dictionary/" + searchKeyword + ".json"
 
-        const data = await fetch(url);
+       return fetch (url).
+       then((data) =>{
         if (data.status === 200) {
             return data.json();
         }
         else {
             return "Error Getting Word";
         }
+    })
     }
 
     render() {
         return(
             <View style={styles.containerStyle}>
-                <Header>OnlineDict</Header>
+                <Header alignment={"center"}>OnlineDict</Header>
                 <TextInput onChangeText={text => {
                     this.setState({
                         text: text,
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor: "#121212",
         alignContent: "center", 
-        width: Dimensions.get('window').width() 
+        width: Dimensions.get('window').width
     },
     textStyle:{
         textAlign: "center",
