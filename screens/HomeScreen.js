@@ -11,7 +11,20 @@ export default class HomeScreen extends React.component{
             word: " ", 
             lexicalCategory: " ", 
             examples: [], 
-            definition: ""
+            definition: "" 
+        }
+    }
+
+    getWord = async (word) => {
+        var searchKeyword = word.toLowerCase(); 
+        var url = "https://rupinwhitehatjr.github.io.dictionary/" + searchKeyword + ".json"
+
+        const data = await fetch(url);
+        if (data.status === 200) {
+            return data.json();
+        }
+        else {
+            return "Error Getting Word";
         }
     }
 
@@ -28,7 +41,9 @@ export default class HomeScreen extends React.component{
                         examples: [], 
                         definition: ""
                     })
-                }}></TextInput>
+                }}
+                value={this.state.text}
+                ></TextInput>
             </View>
         )
     }
