@@ -38,7 +38,7 @@ export default class HomeScreen extends React.Component{
                     backgroundColor={"#333333"}
                     centerComponent={{text:"OnlineDict", style:{color: "#eeeeee", fontSize: 20}}}
                 />
-                <TextInput onChangeText={text => {
+                <TextInput style={styles.inputStyle} onChangeText={text => {
                     this.setState({
                         text: text,
                         isSearchPressed: false, 
@@ -49,7 +49,7 @@ export default class HomeScreen extends React.Component{
                     })
                 }}
                 value={this.state.text}
-                ></TextInput>
+                />
             </View>
         )
     }
@@ -64,5 +64,12 @@ const styles = StyleSheet.create({
     textStyle:{
         textAlign: "center",
         color: "white",
+    }, 
+    inputStyle:{
+        backgroundColor: "gray", 
+        marginTop: 50, 
+        alignSelf: "center", 
+        width: Dimensions.get('window').width/2, 
+        height: Dimensions.get('window').height/25
     }
 })
