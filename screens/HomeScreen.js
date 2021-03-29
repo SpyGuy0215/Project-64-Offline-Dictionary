@@ -9,15 +9,18 @@ export default class HomeScreen extends React.Component {
 			text: ' ',
 			isSearchPressed: false,
 			word: ' ',
-			lexicalCategory: ' ',
+			wordType: ' ',
 			examples: [],
 			definition: '',
 		};
 	}
 
 	getWord = (word) => {
-		var searchKeyword = word.toLowerCase();
-		var url = 'https://rupinwhitehatjr.github.io.dictionary/' + searchKeyword + '.json';
+		console.log(word + ' is the word');
+		var wordInput = word;
+		var searchKeyword = wordInput.toLowerCase().trim();
+		var url = 'https://rupinwhitehatjr.github.io/dictionary/' + searchKeyword + '.json';
+		console.log(url);
 
 		return fetch(url)
 			.then((data) => {
@@ -30,8 +33,20 @@ export default class HomeScreen extends React.Component {
 			.then((response) => {
 				if (response) {
 					var wordData = response.definitions[0];
+					console.log(wordData);
 					var definition = wordData.description;
-					var lexicalCategory = wordData.type;
+					var wordType = wordData.wordType;
+
+					this.setState({
+						word: this.state.text,
+						definition: definition,
+						wordType: wordType,
+					});
+				} else {
+					this.setState({
+						word: this.state.text,
+						definition: 'Not Found',
+					});
 				}
 			});
 	};
@@ -47,13 +62,21 @@ export default class HomeScreen extends React.Component {
 							text: text,
 							isSearchPressed: false,
 							word: ' ',
-							lexicalCategory: ' ',
+							wordType: ' ',
 							examples: [],
 							definition: ' ',
 						});
 					}}
 					value={this.state.text}
 				/>
+				<TouchableOpacity
+					onPress={() => {
+						this.getWord(this.state.text);
+					}}
+				>
+					<Text style={styles.textStyle}>Search!</Text>
+				</TouchableOpacity>
+				<Text style={styles.textStyle}>{this.state.wordType}</Text>
 			</View>
 		);
 	}
@@ -70,7 +93,7 @@ const styles = StyleSheet.create({
 		color: 'white',
 	},
 	inputStyle: {
-		backgroundColor: 'gray',
+		backgroundColor: '#565656',
 		marginTop: 50,
 		alignSelf: 'center',
 		width: Dimensions.get('window').width / 2,
