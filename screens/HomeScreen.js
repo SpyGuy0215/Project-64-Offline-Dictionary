@@ -35,7 +35,7 @@ export default class HomeScreen extends React.Component {
 					var wordData = response.definitions[0];
 					console.log(wordData);
 					var definition = wordData.description;
-					var wordType = wordData.wordType;
+					var wordType = wordData.wordtype;
 
 					this.setState({
 						word: this.state.text,
@@ -76,7 +76,9 @@ export default class HomeScreen extends React.Component {
 				>
 					<Text style={styles.textStyle}>Search!</Text>
 				</TouchableOpacity>
-				<Text style={styles.textStyle}>{this.state.wordType}</Text>
+				<Text style={styles.wordStyle}>{this.state.word}</Text>
+				<Text style={styles.wordTypeStyle}>{this.state.wordType}</Text>
+				<Text style={styles.definitionStyle}>{this.state.definition}</Text>
 			</View>
 		);
 	}
@@ -98,5 +100,23 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		width: Dimensions.get('window').width / 2,
 		height: Dimensions.get('window').height / 25,
+	},
+	wordStyle: {
+		fontSize: 40,
+		textAlign: 'center',
+		color: 'orange',
+		marginTop: 40,
+	},
+	definitionStyle: {
+		textAlign: 'center',
+		color: 'white',
+		marginTop: 20,
+		fontSize: 15,
+	},
+	wordTypeStyle: {
+		textAlign: 'center',
+		color: 'orange',
+		fontSize: 20,
+		marginTop: 10,
 	},
 });
