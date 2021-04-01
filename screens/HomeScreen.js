@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions} from 'react-native';
 import {Header} from 'react-native-elements';
+import dictionary from '../database';
 
 export default class HomeScreen extends React.Component {
 	constructor() {
@@ -17,39 +18,24 @@ export default class HomeScreen extends React.Component {
 
 	getWord = (word) => {
 		console.log(word + ' is the word');
-		var wordInput = word;
-		var searchKeyword = wordInput.toLowerCase().trim();
-		var url = 'https://rupinwhitehatjr.github.io/dictionary/' + searchKeyword + '.json';
-		console.log(url);
+		var wordInput = word.toLowerCase().trim();
 
-		return fetch(url)
-			.then((data) => {
-				if (data.status === 200) {
-					return data.json();
-				} else {
-					return 'Error Getting Word';
-				}
-			})
-			.then((response) => {
-				console.log(response);
-				if (response && response != 'Error Getting Word') {
-					var wordData = response.definitions[0];
-					console.log(wordData);
-					var definition = wordData.description;
-					var wordType = wordData.wordtype;
-
-					this.setState({
-						word: this.state.text,
-						definition: definition,
-						wordType: wordType,
-					});
-				} else {
-					this.setState({
-						word: this.state.text,
-						definition: 'Word not found',
-					});
-				}
+		try {
+			var wordText = dictionary[wordInput]['word'];
+			var lexicalCategory = dictionary[wordInput]['lexicalCategory'];
+			var definition = dictionary[wordInput]['definition'];
+			this.setState({
+				word: word,
+				wordType: lexicalCategory,
+				definition: definition,
 			});
+		} catch (err) {
+			alert('This word is not found');
+			this.setState({
+				text: ' ',
+				isSearchPressed: false,
+			});
+		}
 	};
 
 	render() {
