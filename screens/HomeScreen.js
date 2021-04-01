@@ -31,7 +31,8 @@ export default class HomeScreen extends React.Component {
 				}
 			})
 			.then((response) => {
-				if (response) {
+				console.log(response);
+				if (response && response != 'Error Getting Word') {
 					var wordData = response.definitions[0];
 					console.log(wordData);
 					var definition = wordData.description;
@@ -45,7 +46,7 @@ export default class HomeScreen extends React.Component {
 				} else {
 					this.setState({
 						word: this.state.text,
-						definition: 'Not Found',
+						definition: 'Word not found',
 					});
 				}
 			});
