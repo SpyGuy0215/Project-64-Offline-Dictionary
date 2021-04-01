@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions} from 'react-native';
 import {Header} from 'react-native-elements';
+import dictionary from '../database';
 
 export default class HomeScreen extends React.Component {
 	constructor() {
