@@ -24,6 +24,17 @@ export default class HomeScreen extends React.Component {
 			var wordText = dictionary[wordInput]['word'];
 			var lexicalCategory = dictionary[wordInput]['lexicalCategory'];
 			var definition = dictionary[wordInput]['definition'];
+			this.setState({
+				word: word,
+				wordType: lexicalCategory,
+				definition: definition,
+			});
+		} catch (err) {
+			alert('This word is not found');
+			this.setState({
+				text: ' ',
+				isSearchPressed: false,
+			});
 		}
 	};
 

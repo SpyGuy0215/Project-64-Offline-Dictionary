@@ -43,7 +43,7 @@ const dictionary = {
 	wonderful: {
 		word: 'wonderful',
 		lexicalCategory: 'Adjective',
-		definition: 'inspiring delight, pleasure, or admiration; extremely good; marvellous',
+		definition: 'inspiring delight, pleasure, or admiration; extremely good; marvelous',
 	},
 	ordinary: {
 		word: 'ordinary',
